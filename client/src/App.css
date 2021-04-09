@@ -28,6 +28,23 @@
   color: #61dafb;
 }
 
+.requestDetails {
+  margin-left: 10px;
+  margin-right: 400px;
+  margin-bottom: 5px;
+}
+
+.requestDetails header {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.requestBody {
+  background-color: lightgray;
+  overflow: scroll;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

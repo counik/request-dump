@@ -2,14 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-
-// Import Provider component from react-redux-dom
-// Import store from Store
-// Wrap app in Router, wrap Router in Provider, pass store as prop
+import store from "./lib/Store";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("root")
 );
