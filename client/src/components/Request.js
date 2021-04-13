@@ -24,11 +24,18 @@ const Request = ({ request }) => {
     return `${timeString} ${dateString}`;
   };
 
+  const fullPath = ({ protocol, host, path }) => {
+    return `${protocol}://${host}${path}`;
+  };
+
   return (
     <div className="requestDetails">
       <header>
-        <b>{request.data.method}</b> {request.data.host}{" "}
-        {formatted(request.createdAt)}
+        <span>
+          <b>{request.data.method}</b>
+        </span>
+        <span>{fullPath(request.data)}</span>
+        <span>{formatted(request.createdAt)}</span>
         <button type="button" onClick={toggleDetails}>
           {showDetails ? "Hide Details" : "Show Details"}
         </button>

@@ -38,7 +38,7 @@ button {
 
 .requestDetails {
   margin-left: 10px;
-  margin-right: 30%;
+  margin-right: 10%;
   margin-bottom: 5px;
 }
 
@@ -46,6 +46,10 @@ button {
   border: 1px solid black;
   border-radius: 4px;
   padding: 8px;
+}
+
+.requestDetails span {
+  margin: 10px;
 }
 
 .requestBody {

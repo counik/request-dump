@@ -22,4 +22,7 @@ router.post(
 );
 // router.post("/badEndpoint/invalidCertificate", requestsController.);
 
+// Used for testing with external webhook providers
+router.post("/openEndpoint", requestsController.saveRequest);
+
 module.exports = router;
