@@ -26,10 +26,13 @@ const saveRequest = (req, res, next) => {
   });
 };
 
+// Add sort functionality by chaining method here
 const getRequests = (req, res, next) => {
-  Request.find({}).then((requests) => {
-    res.json(requests);
-  });
+  Request.find({})
+    .sort("-createdAt")
+    .then((requests) => {
+      res.json(requests);
+    });
 };
 
 exports.saveRequest = saveRequest;
