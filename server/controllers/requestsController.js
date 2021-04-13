@@ -10,19 +10,6 @@ const getRequests = (req, res, next) => {
   });
 };
 
-const randomStatus = (req, res, next) => {
-  const codes = [200, 301, 404, 500];
-  const index = Math.floor(codes.length * Math.random());
-  code = codes[index];
-
-  if (code === 200) {
-    res.status(200).send();
-  } else {
-    console.log(`Responding with invalid status code - ${code}`);
-    res.status(code).send();
-  }
-};
-
 const saveRequest = async (req, res, next) => {
   const headers = req.headers;
   const queryString = req.query;
@@ -65,17 +52,38 @@ const validateSignature = (signature, body, secret) => {
 
 // Functions below this line are for testing purposes only
 
-const returnInvalidSignature = (req, res, next) => {
-  const headers = req.headers;
-  const signature = headers["x-team4hook-signature"];
-  const isValid = validateSignature(signature, req.body, INVALID_SECRET);
-
-  if (!isValid) {
-    console.log("Signature did not match - bad request.");
-    res.status(401).send("Signature did not match - bad request.");
+const randomStatus = (req, res, next) => {
+  if (req.headers["x-team4hook-event_type"] == "ping") {
+    res.status(200).send();
   } else {
-    console.log("Invalid test - signature should not have matched");
-    res.end();
+    const codes = [200, 301, 404, 500];
+    const index = Math.floor(codes.length * Math.random());
+    code = codes[index];
+
+    if (code === 200) {
+      saveRequest(req, res, next);
+    } else {
+      console.log(`Responding with invalid status code - ${code}`);
+      res.status(code).send();
+    }
+  }
+};
+
+const returnInvalidSignature = (req, res, next) => {
+  if (req.headers["x-team4hook-event_type"] == "ping") {
+    res.status(200).send();
+  } else {
+    const headers = req.headers;
+    const signature = headers["x-team4hook-signature"];
+    const isValid = validateSignature(signature, req.body, INVALID_SECRET);
+
+    if (!isValid) {
+      console.log("Signature did not match - bad request.");
+      res.status(401).send("Signature did not match - bad request.");
+    } else {
+      console.log("Invalid test - signature should not have matched");
+      res.end();
+    }
   }
 };
 
@@ -83,17 +91,25 @@ const delayRequest = (delay) => {
   delay *= 1000;
 
   return (req, res, next) => {
-    setTimeout(() => {
-      console.log("Consumer took too long to respond - failed request");
-      res.end();
-    }, delay);
+    if (req.headers["x-team4hook-event_type"] == "ping") {
+      res.status(200).send();
+    } else {
+      setTimeout(() => {
+        console.log("Consumer took too long to respond - failed request");
+        res.end();
+      }, delay);
+    }
   };
 };
 
 const specialStatus = (code) => {
   return (req, res, next) => {
-    console.log(`Responding with invalid status code - ${code}`);
-    res.status(code).send();
+    if (req.headers["x-team4hook-event_type"] == "ping") {
+      res.status(200).send();
+    } else {
+      console.log(`Responding with invalid status code - ${code}`);
+      res.status(code).send();
+    }
   };
 };
 
