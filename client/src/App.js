@@ -28,7 +28,8 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import Example from "./components/Example";
 
-const navigation = ["Dashboard", "Team", "Projects", "Calendar", "Reports"];
+// const navigation = ["Dashboard", "Team", "Projects", "Calendar", "Reports"];
+const navigation = ["Home"];
 const profile = ["Your Profile", "Settings", "Sign out"];
 
 function classNames(...classes) {
@@ -47,7 +48,7 @@ export default function App() {
                   <div className="flex-shrink-0">
                     <img
                       className="h-8 w-8"
-                      src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                      src="https://freesvg.org/img/emojipoo.png"
                       alt="Workflow"
                     />
                   </div>
