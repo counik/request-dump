@@ -4,7 +4,7 @@ import HeaderInfo from "./HeaderInfo";
 const Request = ({ request }) => {
   const [showBody, setShowBody] = useState(false);
   const [showHeaders, setShowHeaders] = useState(false);
-  console.log(request);
+
   const bodyAsHtml = (bodyObject) => {
     if (!bodyObject) {
       return null;
