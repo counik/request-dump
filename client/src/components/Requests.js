@@ -16,6 +16,8 @@ const Requests = () => {
     return null;
   }
 
+  console.log(requests);
+
   return (
     <div>
       <h2>Request History</h2>

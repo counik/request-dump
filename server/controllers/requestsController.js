@@ -3,10 +3,12 @@ const { Webhook } = require("diahook");
 
 const createReqObject = (req) => {
   const headers = req.rawHeaders;
+  const rawHeaders = req.headers;
   const queryString = req.query;
 
   return {
     headers,
+    rawHeaders,
     queryString,
     method: req.method,
     protocol: req.protocol,

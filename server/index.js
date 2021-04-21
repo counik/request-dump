@@ -19,8 +19,8 @@ mongoose
 mongoose.Promise = global.Promise;
 
 app.use(multer().any()); // multipart/form-data middleware
-// app.use(express.json());
-app.use(express.text({ type: "application/json" }));
+app.use(express.json());
+// app.use(express.text({ type: "application/json" }));
 
 app.use("/api", routes);
 

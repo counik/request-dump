@@ -6,11 +6,7 @@ const requestsController = require("../controllers/requestsController");
 // router.get("/dumps", dumpsController.getDumps);
 // router.post("/dumps", dumpsController.createDump);
 // router.get("/dumps/:id", dumpsController.getDump);
-router.all(
-  "/myEndpoint",
-  requestsController.verifyDiahook,
-  requestsController.saveRequest
-);
+router.all("/myEndpoint", requestsController.saveRequest);
 router.all(
   "/delay5seconds",
   requestsController.delay(5),
