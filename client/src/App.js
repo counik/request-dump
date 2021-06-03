@@ -1,5 +1,5 @@
-import "./App.css";
-import Requests from "./components/Requests";
+import './App.css';
+import Requests from './components/Requests';
 // Import homepage
 // Import react router
 // Define routes to homepage
@@ -8,7 +8,7 @@ import Requests from "./components/Requests";
 function App() {
   return (
     <div>
-      <h1>Request Dump</h1>
+      <h1>Request Binner</h1>
       <Requests />
     </div>
   );
