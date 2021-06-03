@@ -2,7 +2,6 @@ const Request = require('../models/request');
 const crypto = require('crypto');
 
 const VALID_SECRET = 'a secret';
-const INVALID_SECRET = 'the wrong secret';
 
 const getRequests = (req, res, next) => {
   Request.find({}).then((requests) => {
@@ -25,32 +24,9 @@ const saveRequest = async (req, res, next) => {
     ips: req.ips,
   };
 
-  const signature = headers['x-team4hook-signature'];
-  if (signature) {
-    const isValid = validateSignature(signature, req.body, VALID_SECRET);
-
-    if (!isValid) {
-      console.log('Signature did not match - bad request.');
-      res.status(401).send('Signature did not match - bad request.');
-    }
-  }
-
   await Request.create({ data: newReq });
   res.status(200).end();
 };
-
-const validateSignature = (signature, body, secret) => {
-  const hmac = crypto.createHmac('sha256', secret);
-
-  if (typeof body !== 'string') {
-    body = JSON.stringify(body);
-  }
-
-  hmac.update(body);
-  return signature == hmac.digest('hex');
-};
-
-// Functions below this line are for testing purposes only
 
 const randomStatus = (req, res, next) => {
   if (req.headers['x-team4hook-event_type'] == 'ping') {
