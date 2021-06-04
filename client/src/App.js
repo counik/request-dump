@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import Requests from './components/Requests';
 // Import homepage
 // Import react router
@@ -7,8 +7,10 @@ import Requests from './components/Requests';
 
 function App() {
   return (
-    <div>
-      <h1>Request Binner</h1>
+    <div class="text-center m-10">
+      <h1 class="text-3xl p-10 font-semibold bg-gray-300 border-1 border-gray rounded-lg w-auto m-auto">
+        Request Binner
+      </h1>
       <Requests />
     </div>
   );
