@@ -1,8 +1,15 @@
 const requests = (state = [], action) => {
   switch (action.type) {
     case "FETCH_REQUESTS_SUCCESS":
-      console.log(action.requests[0]);
-      return action.requests;
+      let requests = action.requests;
+      requests.sort((request1, request2) => {
+        const date1 = new Date(request1.updatedAt);
+        const date2 = new Date(request2.updatedAt);
+
+        return date2 - date1;
+      });
+
+      return requests;
     default:
       return state;
   }
